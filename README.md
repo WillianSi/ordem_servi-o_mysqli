@@ -5,8 +5,6 @@ O sistema permite ao usuário cadastrar ordens de serviço, visualizar as ordens
 O repositório contém também uma pasta "sql" com o script para criação do banco de dados e tabelas necessárias para o funcionamento do sistema.
 
 <h1>Sistema de Gerenciamento de Ordem de Serviço</h1>
-less
-Copy code
 <h2>Funcionalidades</h2>
 <ul>
 	<li>Cadastro de ordens de serviço</li>
