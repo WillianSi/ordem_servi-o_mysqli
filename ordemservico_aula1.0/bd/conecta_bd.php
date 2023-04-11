@@ -11,11 +11,10 @@ function conecta_db(){
     $conexao = mysqli_connect($servidor,$usuario_db,$senha_db,$banco);
     
     //Teste de conexao
-    if (mysqli_connect_error($conexao)) {
+    if (mysqli_connect_error()) {
         echo "Erro ao conectar o banco de dados!";
         die();
     }
-    echo 'sim';
     return $conexao;
 }
 
