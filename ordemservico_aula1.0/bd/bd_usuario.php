@@ -126,11 +126,10 @@ function editarSenhaUsuario($codigo,$senha){
 
 function removeUsuario($codigo){
   $conexao = conecta_db();
-  $query = "DELETE FROM usuario WHERE cod = '$codigo'";
+    $query = "delete from usuario where cod = '$codigo'";
+    $resultado = mysqli_query($conexao, $query);
+	$dados = mysqli_affected_rows($conexao);
+	return $dados;
 
-  $resultado = mysqli_query($conexao,$query);
-  $dados = mysqli_affected_rows($resultado);
-
-  return $dados;
 }
 ?>
