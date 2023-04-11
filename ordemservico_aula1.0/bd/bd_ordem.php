@@ -88,4 +88,45 @@ function buscaOrdemadd (){
 
 	return $dados;
 }
+
+function buscaOrdemeditar($codigo){
+    $conexao = conecta_db();
+	$query = "Select 
+			  o.cod AS cod,
+			  c.nome AS nome_cliente,
+			  t.nome AS nome_terceirizada,
+			  s.nome AS nome_servico,
+			  o.data_servico AS data_servico,
+			  o.status AS status,
+			  t.cod AS cod_terceirizado
+			  From ordem o,servico s, cliente c, terceirizado t 
+			  Where o.cod_cliente = c.cod AND 
+			        o.cod_servico = s.cod AND 
+			        o.cod_terceirizado = t.cod AND
+			        o.cod = '$codigo'";
+						  
+	$resultado = mysqli_query($conexao, $query);
+	$dados = mysqli_fetch_array($resultado);
+
+	return $dados;
+}
+
+function editarOrdem($codigo,$cod_terceirizado,$data_servico,$status,$data){
+    $conexao = conecta_db();
+    $query = "SELECT * 
+              FROM ordem
+              WHERE cod='$codigo'";
+  
+    $resultado = mysqli_query($conexao,$query);
+    $dados = mysqli_num_rows($resultado);
+  
+    if($dados == 1){
+      $query = "UPDATE  ordem
+                SET cod_terceirizado = '$cod_terceirizado', data_servico = '$data_servico', status = '$status', data = '$data'
+                WHERE cod = '$codigo'";
+       $resultado = mysqli_query($conexao,$query);
+       $dados = mysqli_affected_rows($conexao);
+       return $dados;
+    }
+  }
 ?>

@@ -53,4 +53,74 @@ function cadastraCliente($nome,$email,$senha,$endereco,$numero,$bairro,$cidade,$
 
   return $dados;
 }
+
+function buscaClienteeditar($codigo){
+  $conexao = conecta_db();
+  $query = "SELECT * 
+            FROM cliente 
+            WHERE cod='$codigo'";
+
+  $resultado = mysqli_query($conexao,$query);
+  $dados = mysqli_fetch_array($resultado);
+
+  return $dados;
+}
+
+function editarPerfilCliente($codigo,$nome,$email,$endereco,$numero,$bairro,$cidade,$telefone,$data){
+  $conexao = conecta_db();
+  $query = "SELECT * 
+            FROM cliente 
+            WHERE cod='$codigo'";
+
+  $resultado = mysqli_query($conexao,$query);
+  $dados = mysqli_num_rows($resultado);
+
+  if($dados == 1){
+    $query = "UPDATE  cliente
+              SET nome = '$nome',email = '$email',endereco = '$endereco',numero = '$numero', bairro = '$bairro', cidade = '$cidade', telefone = '$telefone' ,data ='$data'
+              WHERE cod = '$codigo'";
+     $resultado = mysqli_query($conexao,$query);
+     $dados = mysqli_affected_rows($conexao);
+     return $dados;
+  }
+}
+
+function editarSenhaCliente($codigo,$senha){
+  
+  $conexao = conecta_db();
+  $query = "SELECT * 
+            FROM cliente
+            WHERE cod='$codigo'";
+
+  $resultado = mysqli_query($conexao,$query);
+  $dados = mysqli_num_rows($resultado);
+
+  if($dados == 1){
+    $query = "UPDATE  cliente
+              SET senha = '$senha'
+              WHERE cod = '$codigo'";
+     $resultado = mysqli_query($conexao,$query);
+     $dados = mysqli_affected_rows($conexao);
+     return $dados;
+  }
+}
+
+function editarCliente($codigo,$status,$data){
+  $conexao = conecta_db();
+  $query = "SELECT * 
+            FROM cliente 
+            WHERE cod='$codigo'";
+
+  $resultado = mysqli_query($conexao,$query);
+  $dados = mysqli_num_rows($resultado);
+
+  if($dados == 1){
+    $query = "UPDATE  cliente
+              SET status = '$status',data ='$data'
+              WHERE cod = '$codigo'";
+     $resultado = mysqli_query($conexao,$query);
+     $dados = mysqli_affected_rows($conexao);
+     return $dados;
+  }
+}
 ?>

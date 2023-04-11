@@ -15,6 +15,7 @@ function conecta_db(){
         echo "Erro ao conectar o banco de dados!";
         die();
     }
+    echo 'sim';
     return $conexao;
 }
 

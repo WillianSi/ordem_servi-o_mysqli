@@ -53,4 +53,74 @@ function cadastraTerceirizado($nome,$email,$telefone,$senha,$status,$perfil,$dat
 
   return $dados;
 }
+
+function buscaTerceirizadoeditar($codigo){
+  $conexao = conecta_db();
+  $query = "SELECT * 
+            FROM terceirizado 
+            WHERE cod='$codigo'";
+
+  $resultado = mysqli_query($conexao,$query);
+  $dados = mysqli_fetch_array($resultado);
+
+  return $dados;
+}
+
+function editarPerfilTerceirizado($codigo,$nome,$email,$telefone,$data){
+  $conexao = conecta_db();
+  $query = "SELECT * 
+            FROM terceirizado 
+            WHERE cod='$codigo'";
+
+  $resultado = mysqli_query($conexao,$query);
+  $dados = mysqli_num_rows($resultado);
+
+  if($dados == 1){
+    $query = "UPDATE  terceirizado
+              SET nome = '$nome',email = '$email', telefone = '$telefone' ,data ='$data'
+              WHERE cod = '$codigo'";
+     $resultado = mysqli_query($conexao,$query);
+     $dados = mysqli_affected_rows($conexao);
+     return $dados;
+  }
+}
+
+function editarSenhaTerceirizado($codigo,$senha){
+  
+  $conexao = conecta_db();
+  $query = "SELECT * 
+            FROM terceirizado
+            WHERE cod='$codigo'";
+
+  $resultado = mysqli_query($conexao,$query);
+  $dados = mysqli_num_rows($resultado);
+
+  if($dados == 1){
+    $query = "UPDATE  terceirizado
+              SET senha = '$senha'
+              WHERE cod = '$codigo'";
+     $resultado = mysqli_query($conexao,$query);
+     $dados = mysqli_affected_rows($conexao);
+     return $dados;
+  }
+}
+
+function editarTerceirizado($codigo,$status,$data){
+  $conexao = conecta_db();
+  $query = "SELECT * 
+            FROM terceirizado 
+            WHERE cod='$codigo'";
+
+  $resultado = mysqli_query($conexao,$query);
+  $dados = mysqli_num_rows($resultado);
+
+  if($dados == 1){
+    $query = "UPDATE  terceirizado
+              SET status = '$status' ,data ='$data'
+              WHERE cod = '$codigo'";
+     $resultado = mysqli_query($conexao,$query);
+     $dados = mysqli_affected_rows($conexao);
+     return $dados;
+  }
+}
 ?>

@@ -27,4 +27,35 @@ function cadastraServico($nome,$valor,$data){
 
   return $dados;
 }
+
+function buscaServicoeditar($codigo){
+  $conexao = conecta_db();
+  $query = "SELECT * 
+            FROM servico 
+            WHERE cod='$codigo'";
+
+  $resultado = mysqli_query($conexao,$query);
+  $dados = mysqli_fetch_array($resultado);
+
+  return $dados;
+}
+
+function editarServico($codigo,$nome,$valor,$data){
+  $conexao = conecta_db();
+  $query = "SELECT * 
+            FROM servico
+            WHERE cod='$codigo'";
+
+  $resultado = mysqli_query($conexao,$query);
+  $dados = mysqli_num_rows($resultado);
+
+  if($dados == 1){
+    $query = "UPDATE  servico
+              SET nome = '$nome',valor = '$valor',data ='$data'
+              WHERE cod = '$codigo'";
+     $resultado = mysqli_query($conexao,$query);
+     $dados = mysqli_affected_rows($conexao);
+     return $dados;
+  }
+}
 ?>

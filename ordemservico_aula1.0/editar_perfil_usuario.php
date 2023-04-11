@@ -6,8 +6,10 @@ require_once('sidebar.php');
 require_once ("bd/bd_usuario.php");
 
 $dados = buscaUsuarioeditar($_SESSION['cod_usu']);
+
 $nome = $dados["nome"];
 $email = $dados["email"];
+
 ?>
 
 <!-- Main Content -->
