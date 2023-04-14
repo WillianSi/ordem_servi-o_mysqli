@@ -123,4 +123,13 @@ function editarCliente($codigo,$status,$data){
      return $dados;
   }
 }
+
+function removeCliente($codigo){
+  $conexao = conecta_db();
+    $query = "delete from cliente where cod = '$codigo'";
+    $resultado = mysqli_query($conexao, $query);
+    $dados = mysqli_affected_rows($conexao);
+    return $dados;
+
+}
 ?>

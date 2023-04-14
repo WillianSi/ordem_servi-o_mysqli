@@ -37,7 +37,7 @@ $terceirizados = listaTerceirizados();
                 </div>
             </div>
             <div class="card-body">
-                <form class="user" action="editar_ordem_envia.php" method="post">
+                <form class="user" action="editar_ordem_envia_treceirizado.php" method="post">
                     <input type="hidden" name="cod" value="<?=$cod?>">
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -53,12 +53,7 @@ $terceirizados = listaTerceirizados();
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label> Terceirizado </label>
-                            <select class="form-control" id="cod_terceirizado" name="cod_terceirizado" required>
-                                <option value="<?=$cod_terceirizado?>"><?=$nome_terceirizado?></option> 
-                                <?php foreach($terceirizados as $dados):?>
-                                <option value="<?=$dados['cod']?>"><?=$dados['nome']?></option> 
-                                <?php endforeach ?>
-                                </select>
+                            <input type="text" class="form-control form-control-user" id="nome_servico" name="nome_servico" value="<?= $nome_terceirizado ?>" readonly>
                         </div>
                         <div class="col-sm-6">
                             <label> Data do Serviço </label>
@@ -78,7 +73,7 @@ $terceirizados = listaTerceirizados();
                     </div>
                     <div class="card-footer text-muted" id="btn-form">
                         <div class=text-right>
-                            <a title="Voltar" href="ordem.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
+                            <a title="Voltar" href="ordem_aberta.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>
                             <a title="Adicionar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn"><i class="fas fa-edit">&nbsp;</i>Atualizar</button> </a>
                         </div>
                     </div>

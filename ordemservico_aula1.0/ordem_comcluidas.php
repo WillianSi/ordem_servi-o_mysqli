@@ -2,7 +2,6 @@
 require_once('valida_session.php');
 require_once('header.php'); 
 require_once('sidebar.php'); 
-require_once ("bd/bd_usuario.php");
 ?>
 
 <!-- Main Content -->
@@ -18,8 +17,9 @@ require_once ("bd/bd_usuario.php");
 
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ORDEM DE SERVIÇO ABERTAS</h6>
+                        <h6 class="m-0 font-weight-bold text-primary" id="title">ORDEM DE SERVIÇO CONCLUÍDAS</h6>
                     </div>
+
                     <?php 
                     if ($_SESSION['perfil'] == 1) {
                     ?>
@@ -76,14 +76,9 @@ require_once ("bd/bd_usuario.php");
                                 <?php 
                                 if ($_SESSION['perfil'] == 1) {
                                 ?>
-                                    <th class="text-center" data-orderable="false">Atualizar</th>
                                     <th class="text-center" data-orderable="false">Excluir</th>
-                                    <?php 
-                                    } elseif ($_SESSION['perfil'] == 3) {
-                                ?>
-                                    <th class="text-center" data-orderable="false">Atualizar</th>
                                 <?php 
-                                    }
+                                }
                                 ?>
                             </tr>
                         </thead>
@@ -93,18 +88,13 @@ require_once ("bd/bd_usuario.php");
                         if ($_SESSION['perfil'] == 1) {
                             $ordem = listaOrdem();
                             foreach($ordem as $dados): 
-                                if($dados[5] == 1): ?>
+                                if($dados[5] == 3): ?>
                                     <tr>
                                         <td style="display:none"><?= $dados[0] ?></td>
                                         <td><?= $dados[1] ?></td>
                                         <td><?= $dados[2] ?></td>
                                         <td><?= $dados[3] ?></td>
                                         <td class="text-center"><?= date('d/m/Y',strtotime($dados[4]))?></td>
-                                        <td class="text-center">
-                                            <?php if($dados[5] == 1):?>
-                                                <a title="Atualizar" href="editar_ordem.php?cod=<?=$dados[0]; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
-                                            <?php endif ?>
-                                        </td>
                                         <td class="text-center">
                                         <?php if (($dados[5] == 1) or ($dados[5] == 3)):?> 
                                             <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#excluir-<?=$dados[0];?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt">&nbsp;</i>Excluir</a>
@@ -134,32 +124,25 @@ require_once ("bd/bd_usuario.php");
                         if ($_SESSION['perfil'] == 2) {
                             $ordem = listaOrdemCliente();
                             foreach($ordem as $dados): 
-                                if($dados[5] == 1): ?>
+                                if($dados[5] == 3): ?>
                                     <tr>
                                         <td style="display:none"><?= $dados[0] ?></td>
                                         <td><?= $dados[1] ?></td>
                                         <td><?= $dados[2] ?></td>
                                         <td><?= $dados[3] ?></td>
                                         <td class="text-center"><?= date('d/m/Y',strtotime($dados[4]))?></td>
-                                    </tr>
                                 <?php endif; endforeach; 
                             } 
                         if ($_SESSION['perfil'] == 3) {
                             $ordem = listaOrdemTerceirizado();
                             foreach($ordem as $dados): 
-                                if($dados[5] == 1): ?>
+                                if($dados[5] == 3): ?>
                                     <tr>
                                         <td style="display:none"><?= $dados[0] ?></td>
                                         <td><?= $dados[1] ?></td>
                                         <td><?= $dados[2] ?></td>
                                         <td><?= $dados[3] ?></td>
                                         <td class="text-center"><?= date('d/m/Y',strtotime($dados[4]))?></td>
-                                        <td class="text-center">
-                                            <?php if($dados[5] == 1):?>
-                                                <a title="Atualizar" href="editar_ordem_treceirizado.php?cod=<?=$dados[0]; ?>" class="btn btn-sm btn-success"><i class="fas fa-edit">&nbsp;</i>Atualizar</a>
-                                            <?php endif ?>
-                                        </td>
-                                    </tr>
                                 <?php endif; endforeach; 
                             } 
                                 ?>

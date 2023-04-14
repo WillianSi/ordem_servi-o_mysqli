@@ -58,4 +58,13 @@ function editarServico($codigo,$nome,$valor,$data){
      return $dados;
   }
 }
+
+function removeServico($codigo){
+  $conexao = conecta_db();
+    $query = "delete from servico where cod = '$codigo'";
+    $resultado = mysqli_query($conexao, $query);
+    $dados = mysqli_affected_rows($conexao);
+    return $dados;
+
+}
 ?>

@@ -123,4 +123,13 @@ function editarTerceirizado($codigo,$status,$data){
      return $dados;
   }
 }
+
+function removeTerceirizado($codigo){
+  $conexao = conecta_db();
+    $query = "delete from terceirizado where cod = '$codigo'";
+    $resultado = mysqli_query($conexao, $query);
+    $dados = mysqli_affected_rows($conexao);
+    return $dados;
+
+}
 ?>
